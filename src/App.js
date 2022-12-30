@@ -1,13 +1,20 @@
 import "./App.css";
 import { useState } from "react";
 
-const ColorBox = () => {
-  return <div className="color-container">test</div>;
+const ColorBox = (props) => {
+  return (
+    <div
+      className="color-container"
+      style={{ background: `#${props.randomColor}` }}
+    >
+      test #<span>{props.randomColor}</span>
+    </div>
+  );
 };
 
-const ColorBoxes = (props) => {
-  return <div className="main-container">{props.boxes}</div>;
-};
+// const ColorBoxes = (props) => {
+//   return <div className="main-container">{props.boxes}</div>;
+// };
 
 function App() {
   const [boxes, setBoxes] = useState([<ColorBox key={0} />]);
@@ -16,7 +23,9 @@ function App() {
   const addBox = () => {
     if (boxes.length < 10) {
       setBoxKey(boxKey + 1);
-      setBoxes(boxes.concat(<ColorBox key={boxKey} />));
+      setBoxes(
+        boxes.concat(<ColorBox key={boxKey} randomColor={randomColor()} />)
+      );
     }
   };
 
@@ -27,14 +36,28 @@ function App() {
       setBoxes(boxesCopy);
     }
   };
+  const randomColor = () => {
+    return Math.floor(Math.random() * 16777215).toString(16);
+  };
+
+  const generateColors = () => {
+    const elements = Array.from(
+      document.getElementsByClassName("color-container")
+    );
+    elements.map((element) => {
+      element.style.background = `#${randomColor()}`;
+    });
+  };
 
   return (
     <div>
-      <h1>Color templates generator</h1>
+      <h1 style={{ background: "red" }}>Color templates generator</h1>
       <button onClick={addBox}>Add </button>
       <button onClick={removeBox}>Remove</button>
-      <p>Colors: {boxes.length}</p>
-      <ColorBoxes boxes={boxes} />
+      {/* <button onClick={changeColors}>Generate colors</button> */}
+      <button onClick={generateColors}>Generate colors</button>
+      <p style={{ color: `#${randomColor()}` }}>Colors: {boxes.length}</p>
+      <div className="main-container">{boxes}</div>
     </div>
   );
 }
