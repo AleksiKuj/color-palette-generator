@@ -1,11 +1,59 @@
 .color-container {
-  outline: 1px solid black;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+.color-container span {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  z-index: 10;
 }
 .main-container {
   background-color: lightblue;
   display: flex;
   justify-content: center;
-  height: 10rem;
+  height: 50rem;
+  max-height: 60vh;
+  max-width: 99vw;
+  margin-bottom: 1%;
+  margin-top: 10px;
+  min-height: 55vh;
+}
+.locked {
+  background-image: url("assets/lock.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50px;
+}
+
+.color-container span {
+  background-size: 0;
+}
+.top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 430px) {
+  .locked {
+    background-size: 35px;
+  }
+}
+@media (max-width: 700px) {
+  .main-container {
+    flex-direction: column;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+  span {
+    margin-bottom: 0px;
+    margin-left: 10%;
+  }
+  .color-container {
+    justify-content: flex-start;
+  }
 }
