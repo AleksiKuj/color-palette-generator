@@ -64,7 +64,7 @@ button {
   background-color: #005ce6;
 }
 button:hover {
-  background-color: #0050e6;
+  background-color: #0b40a3;
 }
 @media (max-width: 430px) {
   .locked {

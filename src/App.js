@@ -55,6 +55,7 @@ function App() {
 
         brightnessCheck(element);
       }
+      return 1;
     });
   };
 
