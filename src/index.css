@@ -4,23 +4,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+@font-face {
+  font-family: "BebasNeue";
+  src: local("BebasNeue"),
+    url(./assets/BebasNeue-Regular.otf) format("opentype");
+}
+h1 {
+  font-family: "BebasNeue";
+  font-weight: 700;
+  margin-bottom: 0;
+}
 body {
   margin: 0;
-  background: linear-gradient(
-    135deg,
-    #f5f2f2 5%,
-    #005ce6 5%,
-    #005ce6 15%,
-    #f5f2f2 15%
-  );
-  /* Start #5cbcb0 from 0 and end at 5%, Start #fff at 5% and end at 15%, Start #5cbcb0 again at 15% and end at 100% */
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat; /* To avoid multiple instances */
+  background: #f5f2f2;
   text-align: center;
-}
-@media (max-width: 1120px) {
-  body {
-    background: #f5f2f2;
-  }
 }

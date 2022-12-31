@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Buttons from "./components/Buttons";
 import ColorBox from "./components/ColorBox";
+import Footer from "./components/Footer";
 
 const tinycolor = require("tinycolor2");
 
@@ -90,7 +91,7 @@ function App() {
   return (
     <div>
       <div className="top-container">
-        <h1>Color templates generator</h1>
+        <h1>Color palette generator</h1>
         <p>Click on colors to lock them and copy to clipboard</p>
         <Buttons
           addBox={addBox}
@@ -100,6 +101,7 @@ function App() {
         <p style={{ color: `#${randomColor()}` }}>Colors: {boxes.length}</p>
       </div>
       <div className="main-container">{boxes}</div>
+      <Footer />
     </div>
   );
 }
