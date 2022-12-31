@@ -1,23 +1,24 @@
 import "./App.css";
 import { useState } from "react";
+import Buttons from "./components/Buttons";
+import ColorBox from "./components/ColorBox";
 
 const tinycolor = require("tinycolor2");
-
-const ColorBox = (props) => {
-  return (
-    <div
-      className="color-container"
-      style={{ backgroundColor: `${props.randomColor}` }}
-      onClick={props.toggleLock}
-    >
-      <span>{props.randomColor}</span>
-    </div>
-  );
-};
 
 function App() {
   const toggleLock = (e) => {
     e.target.classList.toggle("locked");
+  };
+
+  const copy = (e) => {
+    const textToCopy = e.target.firstChild.textContent.toUpperCase();
+    navigator.clipboard.writeText(textToCopy);
+    console.log(textToCopy);
+  };
+
+  const handleClick = (e) => {
+    toggleLock(e);
+    copy(e);
   };
 
   const randomColor = () => {
@@ -40,7 +41,6 @@ function App() {
     const elements = Array.from(
       document.getElementsByClassName("color-container")
     );
-
     elements.map((element) => {
       const color =
         "#" +
@@ -58,9 +58,11 @@ function App() {
   };
 
   const [boxes, setBoxes] = useState([
-    <ColorBox key={0} toggleLock={toggleLock} randomColor={randomColor()} />,
+    <ColorBox key={0} handleClick={handleClick} randomColor={randomColor()} />,
+    <ColorBox key={1} handleClick={handleClick} randomColor={randomColor()} />,
+    <ColorBox key={2} handleClick={handleClick} randomColor={randomColor()} />,
   ]);
-  const [boxKey, setBoxKey] = useState(1);
+  const [boxKey, setBoxKey] = useState(boxes.length);
 
   const addBox = () => {
     if (boxes.length < 10) {
@@ -70,7 +72,7 @@ function App() {
           <ColorBox
             key={boxKey}
             randomColor={randomColor()}
-            toggleLock={toggleLock}
+            handleClick={handleClick}
           />
         )
       );
@@ -89,13 +91,12 @@ function App() {
     <div>
       <div className="top-container">
         <h1>Color templates generator</h1>
-        <p>Click on colors to lock them</p>
-        <div>
-          <button onClick={addBox}>Add </button>
-          <button onClick={removeBox}>Remove</button>
-          <button onClick={generateColors}>Generate colors</button>
-        </div>
-
+        <p>Click on colors to lock them and copy to clipboard</p>
+        <Buttons
+          addBox={addBox}
+          removeBox={removeBox}
+          generateColors={generateColors}
+        />
         <p style={{ color: `#${randomColor()}` }}>Colors: {boxes.length}</p>
       </div>
       <div className="main-container">{boxes}</div>
