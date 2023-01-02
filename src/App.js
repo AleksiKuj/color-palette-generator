@@ -4,13 +4,14 @@ import Buttons from "./components/Buttons";
 import ColorBox from "./components/ColorBox";
 import Footer from "./components/Footer";
 
+const namer = require("color-namer");
 const tinycolor = require("tinycolor2");
 
 function App() {
   const toggleLock = (e) => {
     e.target.classList.toggle("locked");
   };
-
+  console.log(namer("#5e4974"));
   const copy = (e) => {
     const textToCopy = e.target.firstChild.textContent.toUpperCase();
     navigator.clipboard.writeText(textToCopy);
@@ -51,18 +52,29 @@ function App() {
 
       if (!element.classList.contains("locked")) {
         element.style.backgroundColor = `${color}`;
-        element.firstChild.textContent = color;
+        element.firstChild.firstChild.textContent = color;
+        element.firstChild.childNodes[1].textContent = namer(color).ntc[0].name;
 
         brightnessCheck(element);
       }
       return 1;
     });
   };
+  const colorName = (color) => namer(color).ntc[0].name;
 
   const [boxes, setBoxes] = useState([
-    <ColorBox key={0} handleClick={handleClick} randomColor={randomColor()} />,
-    <ColorBox key={1} handleClick={handleClick} randomColor={randomColor()} />,
-    <ColorBox key={2} handleClick={handleClick} randomColor={randomColor()} />,
+    <ColorBox
+      key={0}
+      handleClick={handleClick}
+      randomColor={randomColor()}
+      colorName={colorName}
+    />,
+    <ColorBox
+      key={1}
+      handleClick={handleClick}
+      randomColor={randomColor()}
+      colorName={colorName}
+    />,
   ]);
   const [boxKey, setBoxKey] = useState(boxes.length);
 
@@ -75,6 +87,7 @@ function App() {
             key={boxKey}
             randomColor={randomColor()}
             handleClick={handleClick}
+            colorName={colorName}
           />
         )
       );

@@ -22,6 +22,7 @@
   margin-top: 10px;
   min-height: 55vh;
 }
+
 .locked {
   background-image: url("assets/lock.png");
   background-repeat: no-repeat;
@@ -29,14 +30,28 @@
   background-size: 50px;
 }
 
-.color-container span {
-  background-size: 0;
-}
 .top-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.hex-and-name {
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 10;
+  background-size: 0;
+  padding: 0;
+  margin-bottom: 2em;
+}
+.hex-and-name p {
+  background-size: 0;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+.footer {
+  z-index: 111;
 }
 a {
   text-decoration: none;
@@ -66,12 +81,25 @@ button {
 button:hover {
   background-color: #0b40a3;
 }
+.buttons {
+  margin-bottom: 10px;
+}
 @media (max-width: 430px) {
   .locked {
     background-size: 35px;
   }
   h1 {
-    font-size: large;
+    font-size: 36px;
+    margin: 0;
+  }
+  .top-container p {
+    font-size: 0;
+    margin-bottom: 1rem;
+  }
+  .main-container {
+    height: 80vh;
+    position: relative;
+    bottom: -50px;
   }
 }
 @media (max-width: 700px) {
@@ -80,9 +108,10 @@ button:hover {
     margin-bottom: 0px;
     padding-bottom: 0px;
   }
-  span {
-    margin-bottom: 0px;
-    margin-left: 10%;
+  .hex-and-name {
+    margin-left: 2em;
+    margin-bottom: 0;
+    text-align: start;
   }
   .color-container {
     justify-content: flex-start;

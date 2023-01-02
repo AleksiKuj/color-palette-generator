@@ -5,7 +5,10 @@ const ColorBox = (props) => {
       style={{ backgroundColor: `${props.randomColor}` }}
       onClick={props.handleClick}
     >
-      <span>{props.randomColor}</span>
+      <div className="hex-and-name">
+        <p>{props.randomColor}</p>
+        <p>{props.colorName(props.randomColor)}</p>
+      </div>
     </div>
   );
 };
